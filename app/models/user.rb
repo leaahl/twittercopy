@@ -7,5 +7,11 @@ class User < ApplicationRecord
 
 
   has_secure_password
-  validates :password, presence: true, length: {minimum: 8}
+  validates :password, presence: true, length: {minimum: 8}, allow_nil: true
+
+  has_many :microposts, dependent: :destroy
+
+  def feed
+    Micropost.where("user_id = ?", id)
+  end
 end

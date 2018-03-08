@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
 
   resources :users
+  resources :microposts, only: [:create, :destroy]
 
   get  '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'
